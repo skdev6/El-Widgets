@@ -1,0 +1,97 @@
+.card__wrap,.card-wrapper{
+    @media #{$md}{
+        height: 100%; 
+    }
+}
+.card-wrapper{
+    position: relative;
+    background-color: #fff;
+    border: 2px solid #e4e9f0;
+    padding: 241px 50px 40px 50px;
+    text-align: left;
+    z-index: 3;
+    transition: var(--base-transition); 
+    @media #{$md}{
+        display: flex;
+        flex-direction: column;
+    }
+    @media #{$max_lg}{
+        padding:20vw 30px 30px 30px; 
+    }
+    @media #{$max_md}{
+        padding: 9.333333333333334vw 5.333333333333333vw 9.333333333333334vw 39.86666666666667vw;
+    }
+    @media #{$max_sm}{
+        padding:6vw 5vw 6vw 39vw;
+    }
+    &:hover{
+        box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.15);
+        border-color: var(--base-clr);
+    }
+    .img__wrap{
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        transform: translateY(-50px);
+        @media #{$max_lg}{
+            width: 80%;
+            left: 10%;
+        }
+        @media #{$max_md}{
+            text-align: left;
+            height: 100%;
+            width: auto;
+            display: flex;
+            align-items: center; 
+            transform: translateY(0) translateX(-3.6vw); 
+            left: 0; 
+            @media #{$max_sm}{
+                transform: translateY(0) translateX(-10.6vw); 
+            }
+            img{
+                width: 38.13333333333333vw;
+                @media #{$max_sm}{
+                    width: 46.1vw;
+                }
+            }
+            
+        } 
+    }
+    .title{
+        font-size: 26px;
+        line-height: 22px;
+        font-weight: 600;
+        color: var(--base-clr);
+        margin-bottom: 15px;
+        margin-top: 7px;
+        @media #{$max_md}{
+            margin-top: 0; 
+        }
+        @media #{$max_sm}{
+            font-size: 20px;
+            line-height: 16px;
+        }
+    } 
+    .des{
+        font-size: 16px;
+        line-height: 20px;
+        @media #{$max_sm}{
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+    .btn__main-wrap{
+        @media #{$md}{
+            margin-top: auto;
+            padding-top: 30px; 
+        }
+        @media #{$max_lg}{
+            margin-top: 15px; 
+        }
+        @media #{$max_sm}{
+            margin-top:5px; 
+        }
+    }
+}  

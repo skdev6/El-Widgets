@@ -1,0 +1,82 @@
+.hero__area{
+    .hero-bg-wrapper{
+        position: relative;
+        z-index: -10;
+    }
+    .z-top-overlay{
+        right: 1px;
+        top: 1px;
+        z-index: 10;
+        border: 2px solid #fff;
+        border-top: none; 
+    }
+    .hero__bg{
+        overflow: hidden; 
+        position: relative; 
+        z-index: -2;
+        .sp{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 5; 
+            filter: drop-shadow(-1px -3px 15px rgba(0,0,0.2));
+            -webkit-filter: drop-shadow(-1px -3px 15px rgba(0,0,0.2));
+            &::before{ 
+                height: 100%;
+                width: 100%;
+                display: block;
+                content: ""; 
+                background: #fff; 
+            }
+        } 
+        .sl{
+            &::before{
+                clip-path: polygon(100% 0, 50% 100%, 100% 100%);
+                -webkit-clip-path: polygon(100% 0, 50% 100%, 100% 100%);
+            }
+        } 
+        .sr{ 
+            &::before{
+                clip-path: polygon(0 0, 0 100%, 50% 100%); 
+                -webkit-clip-path: polygon(0 0, 0 100%, 50% 100%); 
+            }
+        } 
+        .bg__main{
+            height: 100%;
+            width: 100%; 
+            background-size: cover;
+            background-position: center 0%;
+            background-repeat: no-repeat; 
+        }
+    }
+    .hero-bg-wrapper{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%; 
+    }
+    .text-box-wrapper{
+        position: relative;
+        z-index: 2; background-color: #fff;
+        .text-box-content{
+            background-color: #fff;
+        }
+
+    }
+}
+.has-sq-shape{
+    position: relative;
+    .box--shape{
+        position: absolute;bottom: 0;left: 0;
+        z-index: -1;
+        transform: translate(-50%, 50%); 
+        .inner-shape{
+            padding: 20px; 
+            background-color: var(--base-clr);
+            height: var(--shape-size);
+            width: var(--shape-size); 
+        }
+    }
+}
