@@ -154,5 +154,10 @@ class skdevHero extends \Elementor\Widget_Base {
             <div class="w-100 overflow-hidden hero-bg-wrapper opc-0 pb-1"><span class="z-top-overlay d-block position-absolute"></span><div class="hero__bg ms-auto"><span class="sp sl"></span><span class="sp sr"></span><div class="bg__main" style="background-image:url('<?php echo wp_get_attachment_image_url($settings['hero_image']['id'], 'full'); ?>')"></div></div></div>
 		</section> 
 
+
+
+
+
+
 	<?php }
 }

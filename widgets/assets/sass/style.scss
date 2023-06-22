@@ -1,15 +1,20 @@
 @import "mixins";
 @import "variables";
-@import "components/preloader.scss";
+@import url('../fonts/stylesheet.css');
+// @import "components/preloader.scss"; 
 @import "base";
 @import "typography";
 @import "components/buttons";
-@import "layout/header";
-@import "layout/SideNav";
-@import "layout/hero";
+// @import "layout/header";
+// @import "layout/SideNav";
+// @import "layout/hero";
 @import "components/card";
+@import "scrollToRight";  
 @import "sections";
-@import "layout/footer";
+// @import "layout/footer";
 @import "components/Modal";
-@import "components/accordion";
+// @import "components/accordion";
 @import "form";
+.page-content{
+    overflow: hidden; 
+}

@@ -9,14 +9,14 @@ trait ImageListSettings{
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
-		$this->add_control(
+		$img_list_repeater->add_control(
 			'show_slide_image',
 			[
 				'label' => esc_html__( 'Show Image as slide', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER, 
 			]
 		);
-		$img_list_repeater = new \Elementor\Repeater(); 
+		$img_list_repeater = new \Elementor\Repeater();
 		$img_list_repeater->add_control(
 			'list_image',
 			[  
@@ -124,7 +124,7 @@ trait ImageListSettings{
 				'label_block'=>true,
 				'selectors'=>[  
 					"{{WRAPPER}} .img-list-wrap"=>"margin-left: -{{SIZE}}{{UNIT}}; margin-right: -{{SIZE}}{{UNIT}}",
-					"{{WRAPPER}} .img-list-wrap .img__item, {{WRAPPER}} .swiper-slide .img__item"=>"margin: {{SIZE}}{{UNIT}};",
+					"{{WRAPPER}} .img-list-wrap .img__item"=>"margin: {{SIZE}}{{UNIT}};",
 				]
 			]
 		);
@@ -152,127 +152,13 @@ trait ImageListSettings{
 		);
 
 		$this->end_controls_section();
-		$this->start_controls_section(  
-			'slide_content_style',
-			[
-				'label' => esc_html__( 'Slide Style', 'plugin-name' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-		$this->add_control(
-			'desktopView',
-			[
-				'label' => esc_html__( 'Desktop view', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::NUMBER,
-				'min' => 1,
-				'max' => 100,
-				'step' => 1,
-				'default' => 4,
-			]
-		);
-		$this->add_control(
-			'tabView',
-			[
-				'label' => esc_html__( 'Tab view', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::NUMBER,
-				'min' => 1,
-				'max' => 100,
-				'step' => 1,
-				'default' => 4,
-			]
-		);
-		$this->add_control(
-			'mobileView',
-			[
-				'label' => esc_html__( 'Mobile view', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::NUMBER,
-				'min' => 1,
-				'max' => 100,
-				'step' => 1,
-				'default' => 4,
-			]
-		);
-		$this->add_control(
-			'speed',
-			[
-				'label' => esc_html__( 'Speed', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::NUMBER,
-				'min' => 0,
-				'max' => 15000,
-				'step' => 1,
-				'default' => 1000,
-				'label_block'=>true
-			]
-		);
-		$this->add_control(
-			'slide_autoplay',
-			[
-				'label' => esc_html__( 'AutoPlay', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER, 
-			]
-		);
-		$this->add_control(
-			'lg_slide_view_auto',
-			[
-				'label' => esc_html__( 'Slide view Auto Desktop', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER, 
-			]
-		);
-		$this->add_control(
-			'md_slide_view_auto',
-			[
-				'label' => esc_html__( 'Slide view Auto Tab', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER, 
-			]
-		);
-		$this->add_control(
-			'sm_slide_view_auto',
-			[
-				'label' => esc_html__( 'Slide view Auto mobile', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER, 
-			]
-		);
-		$this->end_controls_section();
     }
 
 	protected function renderImageList() { 
 		$settingsImageList = $this->get_settings_for_display(); if(count($settingsImageList['image_list_repeter'])):
 			if($settingsImageList['show_slide_image'] === 'yes'){
 		?> 
-        <div class="img-slide-wrapper <?php echo $settingsImageList['slide_autoplay'] === 'yes' ? 'has-autoplay' : ''; ?>" data-settings='{
-            "desktopView":<?php echo $settingsImageList['desktopView']; ?>,
-            "tabView":<?php echo $settingsImageList['tabView']; ?>,
-            "mobileView":<?php echo $settingsImageList['mobileView']; ?>,
-            "autoplay":<?php echo $settingsImageList['slide_autoplay'] === 'yes' ? 'true' : "false"; ?>,
-            "lg_slide_view_auto":<?php echo $settingsImageList['lg_slide_view_auto'] === 'yes' ? 'true' : "false"; ?>,
-            "md_slide_view_auto":<?php echo $settingsImageList['md_slide_view_auto'] === 'yes' ? 'true' : "false"; ?>,
-            "sm_slide_view_auto":<?php echo $settingsImageList['sm_slide_view_auto'] === 'yes' ? 'true' : "false"; ?>,
-            "speed":<?php echo $settingsImageList['speed']; ?>
-        }'>
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($settingsImageList['image_list_repeter'] as $list) {
-                        $target = $list['image_list_url']['is_external'] ? ' target="_blank"' : '';
-                        $nofollow = $list['image_list_url']['nofollow'] ? ' rel="nofollow"' : ''; 
-                        $tag = $list['image_list_url']['url'] ? "a" : "div";
-                        $links = $list['image_list_url']['url'] ?   'href="'. $list['image_list_url']['url'] .'" ' . $target . $nofollow  : "";
-                        ?>
-                        <div class="swiper-slide">
-                            <<?php echo $tag ?> <?php echo $links; ?> class="img__item d-flex align-items-center elementor-repeater-item-<?php echo $list['_id']; ?> <?php echo $settingsImageList['image_list_show_border'] ? "has-wrap-border" : ""; ?> <?php echo $list['show_hi'] === 'yes' ? "has-hover-img" : ""; ?> ">
-                                <img src="<?php echo wp_get_attachment_image_url($list['list_image']['id'], 'full') ?>" class="img-1" alt="">
-                                <?php if($list['show_hi'] === 'yes'): ?>
-                                <img src="<?php echo wp_get_attachment_image_url($list['list_hover_image']['id'], 'full') ?>" class="img-2" alt="">
-                                <?php endif; ?>
-                            </<?php echo $tag ?>>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-	<?php 
-	}else{ ?>
-
-			<div class="img-list-wrap d-flex <?php echo $settingsImageList['image_list_list_block'] ? 'flex-column' : 'flex-wrap'; ?>">
+            <div class="img-list-wrap d-flex <?php echo $settingsImageList['image_list_list_block'] ? 'flex-column' : 'flex-wrap'; ?>">
                 <?php foreach ($settingsImageList['image_list_repeter'] as $list) {
 					$target = $list['image_list_url']['is_external'] ? ' target="_blank"' : '';
 					$nofollow = $list['image_list_url']['nofollow'] ? ' rel="nofollow"' : ''; 
@@ -288,7 +174,12 @@ trait ImageListSettings{
 					</<?php echo $tag ?>>
 
 				<?php } ?>
-            </div> 
+            </div>        
+	<?php 
+	}else{ ?>
+
+
+
 	<?php }
 endif; }
 }

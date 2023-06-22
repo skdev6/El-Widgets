@@ -16,13 +16,37 @@ trait ButtonSettings{
 			[  
 				'label' => esc_html__( 'Button Type', 'plugin-name' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'default-btn',
+				'default' => '', 
 				'options' => [
-					'default-btn'  => esc_html__( 'Default', 'plugin-name' ),
-					'secondary' => esc_html__( 'Secondary', 'plugin-name' ),
-					'on-dark' => esc_html__( 'On Dark ', 'plugin-name' ),
+					''  => esc_html__( 'Default', 'plugin-name' ),
+					'light' => esc_html__( 'Light', 'plugin-name' ),
+					'outline-light' => esc_html__( 'Light Outline ', 'plugin-name' ),
+					'dark' => esc_html__( 'Dark', 'plugin-name' ),
+					'outline-dark' => esc_html__( 'Dark Outline', 'plugin-name' ),
+					'round' => esc_html__( 'Round', 'plugin-name' ),
 				],
 			]
+		);
+		$button_repeater->add_responsive_control(
+			'btn_size',
+			[
+				'label' => esc_html__( 'Button Size', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units'=>['px'],
+				'range'=>[
+					'px'=>[
+						'min'=>0,
+						'max'=>500
+					]
+				], 
+				'label_block'=>true, 
+				'selectors'=>[
+					"{{WRAPPER}} {{CURRENT_ITEM}}.btn__main-wrap .btn__main"=>"width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}}",
+				],
+				'condition'=>[
+					'button_type'=>'round'
+				]
+			] 
 		);
 		$button_repeater->add_control(
 			'btn_name',
@@ -98,8 +122,8 @@ trait ButtonSettings{
 				'label' => esc_html__( 'Icon Color', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .btn__main svg path, {{WRAPPER}} .btn-text svg path' => 'fill: {{VALUE}}',
-					'{{WRAPPER}} .btn__main i, {{WRAPPER}} .btn-text i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .btn__main svg path, {{WRAPPER}} {{CURRENT_ITEM}} .btn-text svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .btn__main i, {{WRAPPER}} {{CURRENT_ITEM}} .btn-text i' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -109,11 +133,22 @@ trait ButtonSettings{
 				'label' => esc_html__( 'Icon Hover Color', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .btn__main:hover svg path, {{WRAPPER}} .btn-text:hover svg path' => 'fill: {{VALUE}}',
-					'{{WRAPPER}} .btn__main:hover i, {{WRAPPER}} .btn-text:hover i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .btn__main:hover svg path, {{WRAPPER}} {{CURRENT_ITEM}} .btn-text:hover svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .btn__main:hover i, {{WRAPPER}} {{CURRENT_ITEM}} .btn-text:hover i' => 'color: {{VALUE}}',
 				],
 			]
 		);
+		$button_repeater->add_responsive_control( 
+            'btn_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .btn__main' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 		$button_repeater->add_control(
 			'btn_url',
 			[
@@ -294,7 +329,7 @@ trait ButtonSettings{
 			$btn_nofollow = $button['btn_url']['nofollow'] ? ' rel="nofollow"' : '';
 		?>
 			<div class="btn__main-wrap d-inline-block elementor-repeater-item-<?php echo esc_attr( $button['_id'] ); ?> <?php echo $button['MagneticButtons'] ? "magnetic-btn" : ""; ?>"> 
-				<a href="<?php echo $button['btn_url']['url']; ?>" <?php echo $btn_target . $btn_nofollow ?> class="btn__main d-inline-flex align-items-center btn-<?php echo $button['button_type']; ?> <?php echo $button['extra_class']; ?> <?php echo $button['icon_pos']; ?> ">
+				<a href="<?php echo $button['btn_url']['url']; ?>" <?php echo $btn_target . $btn_nofollow ?> class="btn__main btn-<?php echo $button['button_type']; ?> <?php echo $button['extra_class']; ?> <?php echo $button['icon_pos']; ?> ">
 					<?php
 						echo "<span class='btn__text__wrap d-inline-flex align-items-center'>";
 						if($button['icon_pos'] === 'ltr'){

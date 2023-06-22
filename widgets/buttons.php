@@ -10,14 +10,14 @@ class skdevButton extends \Elementor\Widget_Base {
 	}
  
 	public function get_title() {
-		return __( 'May Day - Button', 'plugin-name' );
+		return __( 'Button', 'plugin-name' );
 	} 
 	public function get_icon() {
 		return 'eicon-button';
 	}
 	 
 	public function get_categories() {
-		return [ 'mayday' ];
+		return [ 'sk_el_cat' ];
 	}
 	protected function _register_controls() {
 		$this->buttonsControls(); 

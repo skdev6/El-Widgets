@@ -1,21 +1,21 @@
 <?php
 /**
- * Plugin Name:       May-Day Elementor Addons
- * Description:       There are all elementor addons for may-day.dk
+ * Plugin Name:       ClickTab Elementor Addons
+ * Description:       There are all elementor addons for ClickTab
  * Version:           1.0.0
- * Author:            May Day
- * Author URI:        https://www.may-day.dk/
- * Text Domain:       mayday
+ * Author:            sumonkhan.pro 
+ * Author URI:        https://sumonkhan.pro/
+ * Text Domain:       sk
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly. ""0.0.07"")
 }
 
-define("MAYDAY_VERSION", "0.0.014");    
+define("MAYDAY_VERSION", uniqid());     
 
 
-final class Elementor_may_day_Extenstion {
+final class Elementor_sk_dev_Extenstion {
 
 	const VERSION = '1.0.0';  
 	const MINIMUM_ELEMENTOR_VERSION = '2.0.0'; 
@@ -87,27 +87,29 @@ final class Elementor_may_day_Extenstion {
 
 	public function register_new_catagory($maneger){
 		$maneger->add_category(
-			'mayday',
+			'sk_el_cat',
 			[
-				'title' => __( 'May Day', 'mayday' ),
+				'title' => __( 'ClickTab', 'mayday' ),
 				'icon' => 'eicon-date',
 			]
 		);
 	}
 	
 	public function widget_styles() {
-		wp_enqueue_style( 'bootstrap.min', plugins_url( 'widgets/assets/css/bootstrap.min.css', __FILE__ ), null, '0.0.0.1', null); 
+		wp_enqueue_style( 'swiper', plugins_url( 'widgets/assets/css/swiper.css', __FILE__ ), null, '0.0.0.1', null); 
+		wp_enqueue_style( 'bootstrap', plugins_url( 'widgets/assets/css/bootstrap.min.css', __FILE__ ), null, '0.0.0.1', null); 
 		wp_enqueue_style( 'mayday-main', plugins_url( 'widgets/assets/css/style.css', __FILE__ ), null, MAYDAY_VERSION, null); 
 	}
  
-	public function widget_scripts() { 
+	public function widget_scripts() {   
 		wp_enqueue_script( 'gsap', plugins_url( 'widgets/assets/js/gsap.min.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true); 
 		wp_enqueue_script( 'ScrollTrigger', plugins_url( 'widgets/assets/js/ScrollTrigger.min.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true);
-		wp_enqueue_script( 'ScrollToPlugin', plugins_url( 'widgets/assets/js/ScrollToPlugin.min.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true);
-		wp_enqueue_script( 'jquery-sticky', plugins_url( 'widgets/assets/js/jquery-sticky.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true);
-		wp_enqueue_script( 'mayday-main', plugins_url( 'widgets/assets/js/main.js', __FILE__ ), [ 'jquery' ], MAYDAY_VERSION, true);
+		wp_enqueue_script( 'locomotive-scroll', plugins_url( 'widgets/assets/js/locomotive-scroll.min.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true);
+		// wp_enqueue_script( 'jquery-sticky', plugins_url( 'widgets/assets/js/jquery-sticky.js', __FILE__ ), [ 'jquery' ], '0.0.0.1', true);
+		wp_enqueue_script( 'swiper', plugins_url( 'widgets/assets/js/swiper.js', __FILE__ ), [ 'jquery' ], MAYDAY_VERSION, true);
+		wp_enqueue_script( 'skdev-main', plugins_url( 'widgets/assets/js/main.js', __FILE__ ), [ 'jquery' ], MAYDAY_VERSION, true);
 		// wp_enqueue_script( 'mayday-head-main', plugins_url( 'widgets/assets/js/head.main.js', __FILE__ ), null, MAYDAY_VERSION, false);  
-	}
+	}  
 
 
 	public function admin_notice_missing_main_plugin() {
@@ -160,26 +162,32 @@ final class Elementor_may_day_Extenstion {
 	public function init_widgets() {
 		// Include Widget files 
 		require_once( __DIR__ . '/widgets/buttons.php' ); 
-		require_once( __DIR__ . '/widgets/Header.php' ); 
-		require_once( __DIR__ . '/widgets/mayDayLinks.php' ); 
-		require_once( __DIR__ . '/widgets/Hero.php' ); 
-		require_once( __DIR__ . '/widgets/Card.php' ); 
-		require_once( __DIR__ . '/widgets/carImg.php' ); 
-		require_once( __DIR__ . '/widgets/imgList.php' ); 
-		require_once( __DIR__ . '/widgets/Footer.php' ); 
-		require_once( __DIR__ . '/widgets/Accordion.php' ); 
+		require_once( __DIR__ . '/widgets/Card.php' ); ; 
+		require_once( __DIR__ . '/widgets/scrollToRight.php' );
+		require_once( __DIR__ . '/widgets/textAutoScroll.php' );
+		require_once( __DIR__ . '/widgets/portfolio.php' );
+		require_once( __DIR__ . '/widgets/Testimonial.php' );
+		require_once( __DIR__ . '/widgets/brandSlide.php' );
+		require_once( __DIR__ . '/widgets/imgList.php' );
+		require_once( __DIR__ . '/widgets/slideImgList.php' );
+		require_once( __DIR__ . '/widgets/checkBoxToggle.php' );
+		require_once( __DIR__ . '/widgets/slideCard.php' );
+		require_once( __DIR__ . '/widgets/customContentSection.php' );
 		
         // Register widget     
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skdevButton() );  
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \SkdevHeader() );  
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \mayDayLinks() );  
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skdevHero() );  
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skdevCard() );    
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \carImg() );    
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \imgList() );    
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \SkdevFooter() );     
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Accordion() );     
-	} 
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skdevButton() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skdevCard() );   
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \skScrollToRight() );   
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \textAutoScroll() );   
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \SkPortfolio() );    
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \SKTestimonial() ); 
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \brandSlide() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \imgList() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \slideImgList() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \checkBoxToggle() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \slideCard() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \customContentSection() );
+	}  
 
 	public function init_document_controls($element){
 		require_once( __DIR__ . '/widgets/pageSettings.php' ); 
@@ -188,16 +196,10 @@ final class Elementor_may_day_Extenstion {
 	}
 }
 
-Elementor_may_day_Extenstion::instance();
+Elementor_sk_dev_Extenstion::instance();
 
 add_action( 'wp_body_open', function(){ 
 
-?>
-<div class="preloader__area"> 
-	<div class="preloader-wrap">
-	<div class="loader">
-		<span>Loading...</span>
-	</div>
-	</div>
-</div>
+?> 
+<div class="video__popup_wrapper"></div>
 <?php });

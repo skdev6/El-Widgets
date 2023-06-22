@@ -8,7 +8,7 @@ class pageSettings{
 
     function registerControls($element){
         $element->start_controls_section(
-			'mayday_page_shape_style',
+			'sk_dev_page_shape_style',
 			[
 				'tab' 			=> \Elementor\Controls_Manager::TAB_STYLE,
 				'label' 		=> esc_html__(' May day shape style', 'master-addons' )
@@ -167,7 +167,7 @@ class pageSettings{
 			'page_modals__content',
 			[
 				'tab' 			=> \Elementor\Controls_Manager::TAB_CONTENT,
-				'label' 		=> __('Modal <small style="color:#2878e1;">MayDay</small>', 'mayday' ),
+				'label' 		=> __('Modal <small style="color:#2878e1;"><a href="https://sumonkhan.pro/">sk</a></small>', 'sk_dev' ),
 			]
 		);
 		$page__modal_repeter = new \Elementor\Repeater();
@@ -216,25 +216,26 @@ function renderPageSettings(){
 <div class="backdrop popup__backdrop"></div>
 		<?php
 			$get_page__modal_repeter = $page_settings_model->get_settings( 'page__modal_repeter' );
+			if($get_page__modal_repeter):
 			foreach ($get_page__modal_repeter as $modal) { if($modal['page__modal_id'] != ""){ ?>
 
 				<div class="popup-wrapper d-flex align-items-center justify-content-center" id="<?php echo $modal['page__modal_id']; ?>">
 					<div class="content__wrap_main has-sq-shape w-100">
 						<div class="content-wrap">
 							<button class="close-btn">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-									stroke="currentColor" class="w-6 h-6">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+								<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="13.8763" cy="13.8763" r="13.8763" fill="black"/>
+									<rect x="17.8828" y="8.42383" width="2.4779" height="13.3807" transform="rotate(45 17.8828 8.42383)" fill="white"/>
+									<rect x="19.6367" y="17.8867" width="2.4779" height="13.3807" transform="rotate(135 19.6367 17.8867)" fill="white"/>
 								</svg>
 							</button>
 							<div class="content__area"> 
 								<?php echo do_shortcode($modal['page__modal_shortcode']); ?>
 							</div>
 						</div>
-						<span class="box--shape"><span class="inner-shape d-block"></span></span>
 					</div>
 				</div>
 
-		<?php } } 
+		<?php } }  endif; 
 
 }

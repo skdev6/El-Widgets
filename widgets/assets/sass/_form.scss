@@ -1,55 +1,49 @@
-.form-control{
-    border-radius: 0;
-    border: 2px solid #e5e5e5;
-    padding: 10px 25px;
-    transition: var(--base-transition);
-    color: #808080; 
-    &::placeholder { 
-        color: #808080;
-        opacity: 1;
-      }
-      
-      &:-ms-input-placeholder {
-        color: #808080;
-        opacity: 1;
-      }
-      
-      &::-ms-input-placeholder { 
-        color: #808080;
-        opacity: 1; 
-      }
-    &:focus{
-        border-color: var(--base-clr); 
-        box-shadow: none; 
-        color: #000; 
-    }
-} 
-.form-light.form-control{ 
-    background-color: rgba(255, 255, 255, 0.149);
-    color: #fff; 
-    &::placeholder { 
-        color: #fff;
-        opacity: 1;
-      }
-      
-      &:-ms-input-placeholder {
-        color: #fff;
-        opacity: 1;
-      }
-      
-      &::-ms-input-placeholder {  
-        color: #fff;
-        opacity: 1; 
-      }
-    &:focus{
-        color: #000;  
-        background-color: #fff;
-    }
-}   
-.pill-12{
-    border-radius: 12px;
-}
 
-textarea.form-control {
-    height: 110px;
+.form-control {
+	background-color: transparent;
+	border: 1px solid #999;
+	color: #000;
+	font-size: 20px;
+	padding: 14px 22px;
+  border-radius: 9px;
+  &:focus{
+    border-color: #000;
+    box-shadow: none; 
+  }
+}
+.form-control::placeholder { 
+  color: #C2C2C2;
+  opacity: 1;
+} 
+.form-item {
+  position: relative;
+}
+.form-item .icon {
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: 17px; 
+} 
+.dark-form{ 
+  .form-control{
+    border-color: rgba(237, 237, 237, 0.15); 
+    color: #fff; 
+    border-radius: 2px; 
+    &:focus{
+      background-color:transparent; 
+      border-color: rgba(237, 237, 237, 0.35);
+    }
+    &::placeholder {  
+      color: #C2C2C2;
+      opacity: 1;
+    } 
+  }
+}
+textarea.form-control{
+  height: 217px; 
+}
+.has-icon{
+  .form-control{
+    padding-left: 59px; 
+  }
 }

@@ -7,14 +7,14 @@ class imgList extends \Elementor\Widget_Base {
 	}
  
 	public function get_title() {
-		return __( 'May Day - Image List', 'plugin-name' );
+		return __( 'Image List', 'plugin-name' );
 	} 
 	public function get_icon() {
 		return 'eicon-button';
 	}
 	 
 	public function get_categories() {
-		return [ 'mayday' ];
+		return [ 'sk_el_cat' ];
 	}
 	protected function _register_controls() {
         $this->imageListControl();

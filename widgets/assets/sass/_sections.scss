@@ -1,0 +1,39 @@
+.testimonial-section{
+    width: 100%;
+    .swiper{
+        overflow: initial; 
+    }
+    .video__popup_wrapper{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 20; 
+        display: none; 
+        .video__popup{
+            height:42vw;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.12) 100%);
+            border: 1px solid #E2E2E2;
+            backdrop-filter: blur(15px); 
+            border-radius: 33px;
+            padding: 4vw 5vw; 
+            position: relative;
+            @media #{$max_lg}{ 
+                height: 53vw; 
+            }
+            iframe{
+                height: 100%;
+                width: 100%; 
+            }
+            .close__btn{
+                position: absolute;
+                top: 25px;
+                right: 25px; 
+            }
+        }
+    }
+}
+.testimonial-slide{
+    overflow: hidden; 
+}

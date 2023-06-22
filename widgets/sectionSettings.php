@@ -9,7 +9,7 @@
 			$widget->start_controls_section(
 				'skdev_el_section_advanced_position',
 				array(
-					'label'     => __('Custom Positioning <small style="color:#2878e1;">MayDay</small>', 'mayday' ),
+					'label'     => __('Custom Positioning <small style="color:#2878e1;">sk</small>', 'sk' ), 
 					'tab'       => \Elementor\Controls_Manager::TAB_ADVANCED
 				)
 			);
@@ -17,14 +17,14 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_type',
 				array(
-					'label'       => __('Position Type', 'mayday' ),
+					'label'       => __('Position Type', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'static'   => __('Static', 'mayday' ),
-						'relative' => __('Relative', 'mayday' ),
-						'absolute' => __('Absolute', 'mayday' )
+						''         => __('Default', 'sk' ),
+						'static'   => __('Static', 'sk' ),
+						'relative' => __('Relative', 'sk' ),
+						'absolute' => __('Absolute', 'sk' )
 					),
 					'default'      => '',
 					'selectors'    => array(
@@ -36,9 +36,9 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_top',
 				array(
-					'label'      => __('Top', 'mayday' ),
+					'label'      => __('Top', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -68,9 +68,9 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_right',
 				array(
-					'label'      => __('Right', 'mayday' ),
+					'label'      => __('Right', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -101,9 +101,9 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_bottom',
 				array(
-					'label'      => __('Bottom', 'mayday' ),
+					'label'      => __('Bottom', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -133,9 +133,9 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_left',
 				array(
-					'label'      => __('Left', 'mayday' ),
+					'label'      => __('Left', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -165,10 +165,10 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_from_center',
 				array(
-					'label'      => __('From Center', 'mayday' ),
-					'description' => __('Please avoid using "From Center" and "Left" options at the same time.', 'mayday' ),
+					'label'      => __('From Center', 'sk' ),
+					'description' => __('Please avoid using "From Center" and "Left" options at the same time.', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
@@ -197,7 +197,7 @@
 			$widget->add_responsive_control(
 				'skdev_el_position_zindex',
 				array(
-					'label'       => __('Z-Index', 'mayday' ),
+					'label'       => __('Z-Index', 'sk' ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'default'      => '',
 					'selectors'    => array(
@@ -208,9 +208,9 @@
 			$widget->add_responsive_control(
 				'skdev_el_height',
 				array(
-					'label'      => __('Height', 'mayday' ),
+					'label'      => __('Height', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
@@ -236,12 +236,21 @@
 					)
 				)
 			);
-			$widget->add_responsive_control(
+			$widget->add_control( 
+				'el_mx__width',
+				[
+					'label'        => __( 'Max Width', 'elementor' ),
+					'type'         => Elementor\Controls_Manager::SWITCHER,
+					'return_value' => 'width',
+					'prefix_class' => 'max-',
+				]
+			);
+			$widget->add_responsive_control( 
 				'skdev_el_width',
 				array(
-					'label'      => __('Width', 'mayday' ),
+					'label'      => __('Width', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
@@ -260,18 +269,28 @@
 						)
 					),
 					'selectors' => array(
-						'{{WRAPPER}}' => 'width:{{SIZE}}{{UNIT}};'
+						'{{WRAPPER}}' => 'width:{{SIZE}}{{UNIT}};',
+						'{{WRAPPER}}.max-width' => 'max-width:{{SIZE}}{{UNIT}}; width:auto;'
 					),
 					'condition' => array(
 						'skdev_el_position_type' => array('relative', 'absolute')
 					)
 				)
 			);
+			$widget->add_control( 
+				'el_mx__auto',
+				[
+					'label'        => __( 'Margin X Center', 'elementor' ),
+					'type'         => Elementor\Controls_Manager::SWITCHER,
+					'return_value' => 'center',
+					'prefix_class' => 'mx-',
+				]
+			);
 			$widget->end_controls_section();
 			$widget->start_controls_section(
 				'skdev_el_section_advanced_transform',
 				array(
-					'label'     => __('Custom transform <small style="color:#2878e1;">MayDay</small>', 'mayday' ),
+					'label'     => __('Custom transform <small style="color:#2878e1;">sk</small>', 'sk' ),
 					'tab'       => \Elementor\Controls_Manager::TAB_ADVANCED
 				)
 			);
@@ -339,7 +358,7 @@
 			$widget->start_controls_section(
 				'skdev_el_section_advanced_extra_settings',
 				array(
-					'label'     => __('Extra Settings <small style="color:#2878e1;">MayDay</small>', 'mayday' ),
+					'label'     => __('Extra Settings <small style="color:#2878e1;">sk</small>', 'sk' ),
 					'tab'       => \Elementor\Controls_Manager::TAB_ADVANCED
 				)
 			);
@@ -347,13 +366,13 @@
 			$widget->add_responsive_control(
 				'skdev_el_row_reverse',
 				array(
-					'label'       => __('Flex Row', 'mayday' ),
+					'label'       => __('Flex Row', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'row-reverse'   => __('Row Reverse', 'mayday' ),
-						'row' => __('Row', 'mayday' )
+						''         => __('Default', 'sk' ),
+						'row-reverse'   => __('Row Reverse', 'sk' ),
+						'row' => __('Row', 'sk' )
 					),
 					'default'      => '',
 					'separator' => 'after',
@@ -402,13 +421,13 @@
 			$widget->add_control(
 				'with_container_padding',
 				array(
-					'label'       => __('Container space', 'mayday' ),
+					'label'       => __('Container space', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'pl-box-container'   => __('Left', 'mayday' ),
-						'pr-box-container' => __('Right', 'mayday' )
+						''         => __('Default', 'sk' ),
+						'pl-box-container'   => __('Left', 'sk' ),
+						'pr-box-container' => __('Right', 'sk' )
 					),
 					'default'      => '',
 					'prefix_class' => '',
@@ -418,13 +437,13 @@
 			$widget->add_control(
 				'with_container_gap_fill',
 				array(
-					'label'       => __('Container space gap fill', 'mayday' ),
+					'label'       => __('Container space gap fill', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'container__space_gap_left'   => __('Left', 'mayday' ),
-						'container__space_gap_right' => __('Right', 'mayday' )
+						''         => __('Default', 'sk' ),
+						'container__space_gap_left'   => __('Left', 'sk' ),
+						'container__space_gap_right' => __('Right', 'sk' )
 					),
 					'default'      => '',
 					'prefix_class' => '',
@@ -447,12 +466,12 @@
 			$widget->add_control( 
 				'icon_list_style_extra',
 				array(
-					'label'       => __('Extra Icon list style', 'mayday' ),
+					'label'       => __('Extra Icon list style', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						'' => __('No', 'mayday' ),
-						'custom__icon__list'   => __('Yes', 'mayday' ),
+						'' => __('No', 'sk' ),
+						'custom__icon__list'   => __('Yes', 'sk' ),
 					),
 					'default'      => '',
 					'prefix_class' => '',
@@ -488,13 +507,13 @@
 			$widget->add_control(
 				'icon__text_decaration_underline',
 				array(
-					'label'       => __('Icon Text Decaration', 'mayday' ),
+					'label'       => __('Icon Text Decaration', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'underline'   => __('underline', 'mayday' ),
-						'line-through' => __('line-through', 'mayday' )
+						''         => __('Default', 'sk' ),
+						'underline'   => __('underline', 'sk' ),
+						'line-through' => __('line-through', 'sk' )
 					),
 					'selectors'    => array(
 						'{{WRAPPER}}.custom__icon__list .elementor-icon-list-item .elementor-icon-list-text' => 'text-decoration:{{VALUE}};',
@@ -511,13 +530,13 @@
 			$widget->add_responsive_control(
 				'custom_background_shape',
 				array(
-					'label'       => __('Custom background shape', 'mayday' ),
+					'label'       => __('Custom background shape', 'sk' ),
 					'label_block' => true,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
-						''         => __('Default', 'mayday' ),
-						'has_custom_bg__shape'   => __('Yes', 'mayday' ),
-						'' => __('No', 'mayday' ),
+						''         => __('Default', 'sk' ),
+						'has_custom_bg__shape'   => __('Yes', 'sk' ),
+						'' => __('No', 'sk' ),
 					),
 					'default'      => '',
 					'prefix_class' => '',
@@ -539,9 +558,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_top',
 				array(
-					'label'      => __('Top', 'mayday' ),
+					'label'      => __('Top', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -571,9 +590,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_right',
 				array(
-					'label'      => __('Right', 'mayday' ),
+					'label'      => __('Right', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -604,9 +623,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_bottom',
 				array(
-					'label'      => __('Bottom', 'mayday' ),
+					'label'      => __('Bottom', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -636,9 +655,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_left',
 				array(
-					'label'      => __('Left', 'mayday' ),
+					'label'      => __('Left', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -2000,
@@ -668,10 +687,10 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_from_center',
 				array(
-					'label'      => __('From Center', 'mayday' ),
-					'description' => __('Please avoid using "From Center" and "Left" options at the same time.', 'mayday' ),
+					'label'      => __('From Center', 'sk' ),
+					'description' => __('Please avoid using "From Center" and "Left" options at the same time.', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
@@ -700,7 +719,7 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_position_zindex',
 				array(
-					'label'       => __('Z-Index', 'mayday' ),
+					'label'       => __('Z-Index', 'sk' ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'default'      => '',
 					'selectors'    => array(
@@ -714,9 +733,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_height',
 				array(
-					'label'      => __('Height', 'mayday' ),
+					'label'      => __('Height', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
@@ -745,9 +764,9 @@
 			$widget->add_responsive_control(
 				'custom_shape_el_width',
 				array(
-					'label'      => __('Width', 'mayday' ),
+					'label'      => __('Width', 'sk' ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
-					'size_units' => array('px', 'em', '%', 'vw', 'vh'),
+					'size_units' => array('px', 'em', '%', 'vw', 'vh', 'custom'),
 					'range'      => array(
 						'px' => array(
 							'min'  => -1000,
